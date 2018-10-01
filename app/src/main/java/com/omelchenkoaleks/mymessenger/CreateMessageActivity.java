@@ -21,9 +21,18 @@ public class CreateMessageActivity extends Activity {
         String messageText = messageView.getText().toString();
 
         // используем Интент, чтобы запустить вторую активность
-        Intent intent = new Intent(this, ReceiveMessageActivity.class);
+//        Intent intent = new Intent(this, ReceiveMessageActivity.class);
         // добавляем текст в интент под именем "message"
-        intent.putExtra(ReceiveMessageActivity.EXTRA_MESSAGE, messageText);
+//        intent.putExtra(ReceiveMessageActivity.EXTRA_MESSAGE, messageText);
+
+        // Интенту назначается действие отправить
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        // MIME - тип данных, которые принимает активность
+        intent.setType("text/plain");
+
+        // после того, как андроид найдет нужное приложение, которое может обработать
+        // сообщение - запускается активность и выводит дополнительный текст
+        intent.putExtra(Intent.EXTRA_TEXT, messageText);
         startActivity(intent);
     }
 }
