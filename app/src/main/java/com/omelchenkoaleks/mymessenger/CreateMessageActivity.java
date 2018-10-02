@@ -33,6 +33,12 @@ public class CreateMessageActivity extends Activity {
         // после того, как андроид найдет нужное приложение, которое может обработать
         // сообщение - запускается активность и выводит дополнительный текст
         intent.putExtra(Intent.EXTRA_TEXT, messageText);
-        startActivity(intent);
+
+        // получаем текст заголовка
+        String chooserTitle = getString(R.string.chooser);
+        // выводит диалоговое окно выбора приложений без возможности выбрать только одно на постоянной основе
+        Intent chooserIntent = Intent.createChooser(intent, chooserTitle);
+        // теперь запускаем активность выбранную пользователем с помощью chooserIntent
+        startActivity(chooserIntent);
     }
 }
